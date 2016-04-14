@@ -71,8 +71,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<h1>Welcome to Information System!</h1>
 
 	<div id="body">
-            <a href="<?php echo site_url("category/registration"); ?>">Categories</a> 
-           <a href="<?php echo site_url("category/login"); ?>">Posts</a> 
+            <a href="<?php echo site_url("category/getCategories"); ?>">Categories</a> 
+           <a href="<?php echo site_url("post/getPosts"); ?>">Posts</a> 
             
 	</div>
 

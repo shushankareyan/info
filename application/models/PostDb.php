@@ -11,18 +11,18 @@
  *
  * @author skareyan
  */
-class Category_db extends CI_Model{
+class PostDb extends CI_Model{
    
     public function create($data){
         
-        $this->db->insert('category', $data);
+        $this->db->insert('post', $data);
         return $this->db->insert_id();
                
     }
         
     public function getId ($name){
       
-        $sql="SELECT * FROM `category` WHERE name='$name' ";
+        $sql="SELECT * FROM `post` WHERE name='$name' ";
         $result=$this->db->query($sql);
         $id = ($result->num_rows() !== 0)? $result->row()->id : 0;
         return $id;
@@ -30,18 +30,30 @@ class Category_db extends CI_Model{
         
     public function get($id = 0){
         if ($id ==0) {
+            $query = $this->db->query("Select * from post");  
+             return $query->result_array();
+             
+        } else {
+            $query = $this->db->get_where('post', array('id' => $id));
+            return $query->result_array();
+        }
+    }
+    
+     public function getCategories($id = 0){
+        if ($id == 0) {
             $query = $this->db->query("Select * from category");  
              return $query->result_array();
              
         } else {
-            $query = $this->db->get_where('category', array('id' => $id));
+            $sql= "SELECT post.id, post.name, post.category_id, category.name as category_name From post join category where (post.id =$id )";
+            $query = $this->db->query($sql);
             return $query->result_array();
         }
     }
         
     public function delete($id){
           
-       return $this->db->delete('category', array('id' => $id));
+       return $this->db->delete('post', array('id' => $id));
         
             
     }
@@ -49,7 +61,7 @@ class Category_db extends CI_Model{
     public function update($data, $id){
         
         $this->db->where('id', $id);
-        return  $this->db->update('category', $data);
+        return  $this->db->update('post', $data);
           
     }
 
