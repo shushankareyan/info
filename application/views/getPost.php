@@ -68,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-    <h1>Categories</h1>
+    <h1>Posts</h1>
     
     
 
