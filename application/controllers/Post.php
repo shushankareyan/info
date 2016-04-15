@@ -53,7 +53,7 @@ class Post extends CI_Controller{
                 $this->createError();
             }
         }else{
-//            $result_post ['posts'] = $this->postDb->getCategories($id);
+// //           $result_post ['posts'] = $this->postDb->getCategories($id);
 //            $result_category ['categories'] = $this->postDb->getCategories();
             $result_post ['posts'] = array_merge($this->postDb->getCategories($id), $this->postDb->getCategories());
             $this->load->view('updateCategory', $result_post);
