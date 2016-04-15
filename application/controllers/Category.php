@@ -17,7 +17,7 @@ class Category extends CI_Controller{
     { 
     
         parent::__construct();
-        $this->load->model('category_db');
+        $this->load->model('category_model');
     }
    
     public function create()
@@ -67,7 +67,7 @@ class Category extends CI_Controller{
     
     public function getCategories(){
         
-      $result ['categories'] = $this->category_db->get();
+      $result ['categories'] = $this->category_model->get();
 
         $this->load->view('getCategory', $result);
     }

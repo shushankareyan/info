@@ -81,8 +81,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             foreach($categories as $category){
                 ?>
                 <a href="<?php echo site_url ('/category/update/'.$category['id']); ?>"><?php echo $category['name']?></a>
-                 <a href="<?php echo site_url ('/category/deleteCategory/'.$category['id']); ?>">Delete</a></br>
-                 <hr/>
+                 <a href="<?php echo site_url ('/category/deleteCategory/'.$category['id']); ?>">Delete</a></br></br>
 
                 <?php
             }

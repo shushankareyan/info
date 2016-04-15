@@ -18,6 +18,7 @@ class Post extends CI_Controller{
     
         parent::__construct();
         $this->load->model('postDb');
+        $this->load->model('category_db');
     }
    
     public function create()
@@ -53,10 +54,21 @@ class Post extends CI_Controller{
                 $this->createError();
             }
         }else{
-// //           $result_post ['posts'] = $this->postDb->getCategories($id);
-//            $result_category ['categories'] = $this->postDb->getCategories();
-            $result_post ['posts'] = array_merge($this->postDb->getCategories($id), $this->postDb->getCategories());
-            $this->load->view('updateCategory', $result_post);
+            $post = $this->postDb->get($id);
+            $categories = $this->category_db->get();
+
+            $data = [
+                'post' => $post,
+                'categories' => $categories
+            ];
+//            var_dump($post->category_id);
+////            var_dump($result_post ['posts'][0]['name']);
+////            var_dump($result_post ['posts'][0]['category_id']);
+//
+////            $result_post['current_category_id'] = $result_post ['posts'][0]['category_id']; //$this->category_db->get($result_post ['posts'][0]['category_id']);
+//            $result_post['categories'] = $this->category_db->get();
+
+            $this->load->view('updatePost', $data);
         }
 
     }

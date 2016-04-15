@@ -11,7 +11,7 @@
  *
  * @author skareyan
  */
-class Category_db extends CI_Model{
+class Category_model extends CI_Model{
    
     public function create($data){
         
@@ -35,7 +35,7 @@ class Category_db extends CI_Model{
              
         } else {
             $query = $this->db->get_where('category', array('id' => $id));
-            return $query->result_array();
+            return $query->row();
         }
     }
         

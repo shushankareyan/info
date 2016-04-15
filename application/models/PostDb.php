@@ -35,21 +35,21 @@ class PostDb extends CI_Model{
              
         } else {
             $query = $this->db->get_where('post', array('id' => $id));
-            return $query->result_array();
+            return $query->row();
         }
     }
     
-     public function getCategories($id = 0){
-        if ($id == 0) {
-            $query = $this->db->query("Select * from category");  
-             return $query->result_array();
-             
-        } else {
-            $sql= "SELECT post.id, post.name, post.category_id, category.name as category_name From post join category where (post.id =$id )";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        }
-    }
+//     public function getCategories($id = 0){
+//        if ($id == 0) {
+//            $query = $this->db->query("Select * from category");
+//             return $query->result_array();
+//
+//        } else {
+//            $sql= "SELECT post.id, post.name, post.category_id, category.name as category_name From post join category where (post.id =$id )";
+//            $query = $this->db->query($sql);
+//            return $query->result_array();
+//        }
+//    }
         
     public function delete($id){
           
