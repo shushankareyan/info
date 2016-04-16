@@ -26,7 +26,7 @@ class Category extends CI_Controller{
             $data = [
                 'name' => $this->input->post('categoryName')
             ];
-            $result = $this->category_db->create($data);
+            $result = $this->category_model->create($data);
             if ($result) {
                 redirect('/category/getCategories');
             } else {
@@ -43,21 +43,21 @@ class Category extends CI_Controller{
             $data = [
                 'name' => $this->input->post('categoryName')
             ];
-            $result = $this->category_db->update($data, $id);
+            $result = $this->category_model->update($data, $id);
             if ($result) {
                 redirect('/category/getCategories');
             } else {
                 $this->createError();
             }
         }else{
-            $result ['categories'] = $this->category_db->get($id);
+            $result ['categories'] = $this->category_model->get($id);
             $this->load->view('updateCategory', $result);
         }
 
     }
 
     public function deleteCategory($id){
-        $result = $this->category_db->delete($id);
+        $result = $this->category_model->delete($id);
         if ($result) {
             redirect('/category/getCategories');
         } else {

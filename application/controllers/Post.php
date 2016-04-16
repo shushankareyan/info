@@ -17,8 +17,8 @@ class Post extends CI_Controller{
     { 
     
         parent::__construct();
-        $this->load->model('postDb');
-        $this->load->model('category_db');
+        $this->load->model('post_model');
+        $this->load->model('category_model');
     }
    
     public function create()
@@ -28,14 +28,14 @@ class Post extends CI_Controller{
                 'name' => $this->input->post('postName'),
                 'category_id'  => $this->input->post('categoryId')    
             ];
-            $result = $this->postDb->create($data);
+            $result = $this->post_model->create($data);
             if ($result) {
                 redirect('/post/getPosts');
             } else {
                 $this->createError();
             }
         } else {
-             $result ['categories'] =  $this->postDb->getCategories();
+             $result ['categories'] =  $this->post_model->getCategories();
             $this->load->view('createPost' , $result);
         }
     }
@@ -47,15 +47,15 @@ class Post extends CI_Controller{
                 'name' => $this->input->post('postName'),
                 'category_id' => $this->input->post('categoryId')    
             ];
-            $result = $this->postDb->update($data, $id);
+            $result = $this->post_model->update($data, $id);
             if ($result) {
                 redirect('/category/getCategories');
             } else {
                 $this->createError();
             }
         }else{
-            $post = $this->postDb->get($id);
-            $categories = $this->category_db->get();
+            $post = $this->post_model->get($id);
+            $categories = $this->category_model->get();
 
             $data = [
                 'post' => $post,
@@ -65,8 +65,8 @@ class Post extends CI_Controller{
 ////            var_dump($result_post ['posts'][0]['name']);
 ////            var_dump($result_post ['posts'][0]['category_id']);
 //
-////            $result_post['current_category_id'] = $result_post ['posts'][0]['category_id']; //$this->category_db->get($result_post ['posts'][0]['category_id']);
-//            $result_post['categories'] = $this->category_db->get();
+////            $result_post['current_category_id'] = $result_post ['posts'][0]['category_id']; //$this->category_model->get($result_post ['posts'][0]['category_id']);
+//    //        $result_post['categories'] = $this->category_model->get();
 
             $this->load->view('updatePost', $data);
         }
@@ -74,7 +74,7 @@ class Post extends CI_Controller{
     }
 
     public function delete($id){
-        $result = $this->postDb->delete($id);
+        $result = $this->post_model->delete($id);
         if ($result) {
             redirect('/post/getPosts');
         } else {
@@ -84,7 +84,7 @@ class Post extends CI_Controller{
     
     public function getPosts(){
         
-      $result ['posts'] = $this->postDb->get();
+      $result ['posts'] = $this->post_model->get();
 
         $this->load->view('getPost', $result);
     }
