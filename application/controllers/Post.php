@@ -35,8 +35,8 @@ class Post extends CI_Controller{
                 $this->createError();
             }
         } else {
-             $result ['categories'] =  $this->post_model->getCategories();
-            $this->load->view('createPost' , $result);
+             $result ['categories'] =  $this->category_model->get();
+            $this->load->view('post/createPost' , $result);
         }
     }
 
@@ -49,7 +49,7 @@ class Post extends CI_Controller{
             ];
             $result = $this->post_model->update($data, $id);
             if ($result) {
-                redirect('/category/getCategories');
+                redirect('/post/getPosts');
             } else {
                 $this->createError();
             }
@@ -68,7 +68,7 @@ class Post extends CI_Controller{
 ////            $result_post['current_category_id'] = $result_post ['posts'][0]['category_id']; //$this->category_model->get($result_post ['posts'][0]['category_id']);
 //    //        $result_post['categories'] = $this->category_model->get();
 
-            $this->load->view('updatePost', $data);
+            $this->load->view('post/updatePost', $data);
         }
 
     }
@@ -86,7 +86,7 @@ class Post extends CI_Controller{
         
       $result ['posts'] = $this->post_model->get();
 
-        $this->load->view('getPost', $result);
+        $this->load->view('post/getPost', $result);
     }
  
     

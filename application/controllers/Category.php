@@ -33,7 +33,7 @@ class Category extends CI_Controller{
                 $this->createError();
             }
         } else {
-            $this->load->view('createCategory');
+            $this->load->view('category/createCategory');
         }
     }
 
@@ -50,8 +50,11 @@ class Category extends CI_Controller{
                 $this->createError();
             }
         }else{
-            $result ['categories'] = $this->category_model->get($id);
-            $this->load->view('updateCategory', $result);
+            $category = $this->category_model->get($id);
+            $data = [
+                'category' => $category,
+            ];
+            $this->load->view('category/updateCategory', $data);
         }
 
     }
@@ -69,7 +72,7 @@ class Category extends CI_Controller{
         
       $result ['categories'] = $this->category_model->get();
 
-        $this->load->view('getCategory', $result);
+        $this->load->view('category/getCategory', $result);
     }
  
     
