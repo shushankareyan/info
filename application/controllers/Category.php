@@ -70,9 +70,11 @@ class Category extends CI_Controller{
     
     public function getCategories(){
         
-      $result ['categories'] = $this->category_model->get();
+          $result ['categories'] = $this->category_model->get();
+          $data['body'] = $this->load->view('category/getCategory',  $result, true);
+          $this->load->view('templates/main', $data);
 
-        $this->load->view('category/getCategory', $result);
+       // $this->load->view('category/getCategory', $result);
     }
  
     
