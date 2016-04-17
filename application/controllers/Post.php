@@ -61,17 +61,12 @@ class Post extends CI_Controller{
                 'post' => $post,
                 'categories' => $categories
             ];
-//            var_dump($post->category_id);
-////            var_dump($result_post ['posts'][0]['name']);
-////            var_dump($result_post ['posts'][0]['category_id']);
-//
-////            $result_post['current_category_id'] = $result_post ['posts'][0]['category_id']; //$this->category_model->get($result_post ['posts'][0]['category_id']);
-//    //        $result_post['categories'] = $this->category_model->get();
 
             $this->load->view('post/updatePost', $data);
         }
 
     }
+
 
     public function delete($id){
         $result = $this->post_model->delete($id);
