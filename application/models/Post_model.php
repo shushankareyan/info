@@ -20,13 +20,15 @@ class Post_model extends CI_Model{
                
     }
         
-    public function getId ($name){
-      
-        $sql="SELECT * FROM `post` WHERE name='$name' ";
-        $result=$this->db->query($sql);
-        $id = ($result->num_rows() !== 0)? $result->row()->id : 0;
-        return $id;
-    }
+//    public function getId ($name){
+//
+//        $sql="SELECT * FROM `post` WHERE name='".$name."' ";
+//        $result=$this->db->query($sql);
+//        $last = $this->db->last_query();
+//        var_dump($last);
+//        $id = ($result->num_rows() !== 0)? $result->row()->id : 0;
+//        return $id;
+//    }
         
     public function get($id = 0){
         if ($id ==0) {

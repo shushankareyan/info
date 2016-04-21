@@ -78,10 +78,12 @@ class Post extends CI_Controller{
     }
     
     public function getPosts(){
+//        $this->load->library('template');
         
       $result ['posts'] = $this->post_model->get();
 
-        $this->load->view('post/getPost', $result);
+        $this->template->load('template2', 'post/getPost', $result);
+//        $this->load->view('post/getPost', $result);
     }
  
     
