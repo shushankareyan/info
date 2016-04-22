@@ -11,31 +11,29 @@
  *
  * @author skareyan
  */
-class Category extends CI_Controller{
+class User extends CI_Controller{
     
     public function __construct()
     { 
     
         parent::__construct();
-        $this->load->model('category_model');
-//        $this->load->library('template');
+        $this->load->model('user_model');
     }
    
     public function create()
     {
-        if (isset($_POST['categoryName'])) {
+        if (isset($_POST['userName'])) {
             $data = [
                 'name' => $this->input->post('categoryName')
             ];
             $result = $this->category_model->create($data);
             if ($result) {
-                redirect('/category/getCategories');
+                redirect('/user/getUsers');
             } else {
                 $this->createError();
             }
         } else {
-         //   $this->load->view('category/createCategory');
-            $this->template->load('main', 'category/createCategory');
+            $this->load->view('user/createUser');
         }
     }
 
@@ -45,38 +43,37 @@ class Category extends CI_Controller{
             $data = [
                 'name' => $this->input->post('categoryName')
             ];
-            $result = $this->category_model->update($data, $id);
+            $result = $this->user_model->update($data, $id);
             if ($result) {
-                redirect('/category/getCategories');
+                redirect('/user/getUsers');
             } else {
                 $this->createError();
             }
         }else{
-            $category = $this->category_model->get($id);
+            $category = $this->user_model->get($id);
             $data = [
-                'category' => $category,
+                'user' => $user,
             ];
-          // $this->load->view('category/updateCategory', $data);
-             $this->template->load('main', 'category/updateCategory', $data);
+            $this->load->view('user/updateUser', $data);
         }
 
     }
 
-    public function deleteCategory($id){
-        $result = $this->category_model->delete($id);
+    public function deleteUser($id){
+        $result = $this->user_model->delete($id);
         if ($result) {
-            redirect('/category/getCategories');
+            redirect('/user/getUsers');
         } else {
             $this->createError();
         }
     }
     
-    public function getCategories(){
+    public function getUsers(){
 
 
-          $result ['categories'] = $this->category_model->get();
+          $result ['users'] = $this->user_model->get();
 
-        $this->template->load('main', 'category/getCategory', $result);
+        $this->template->load('template1', 'category/getCategory', $result);
 
     }
  

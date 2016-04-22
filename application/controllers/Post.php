@@ -36,7 +36,7 @@ class Post extends CI_Controller{
             }
         } else {
              $result ['categories'] =  $this->category_model->get();
-            $this->load->view('post/createPost' , $result);
+            $this->template->load('main', 'post/createPost', $result);
         }
     }
 
@@ -62,7 +62,7 @@ class Post extends CI_Controller{
                 'categories' => $categories
             ];
 
-            $this->load->view('post/updatePost', $data);
+        $this->template->load('main', 'post/updatePost', $data);
         }
 
     }
@@ -82,8 +82,8 @@ class Post extends CI_Controller{
         
       $result ['posts'] = $this->post_model->get();
 
-        $this->template->load('template2', 'post/getPost', $result);
-//        $this->load->view('post/getPost', $result);
+        $this->template->load('main', 'post/getPost', $result);
+
     }
  
     
