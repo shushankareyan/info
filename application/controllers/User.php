@@ -22,11 +22,15 @@ class User extends CI_Controller{
    
     public function create()
     {
-        if (isset($_POST['userName'])) {
+        if ($_POST) {
             $data = [
-                'name' => $this->input->post('categoryName')
+                'name' => $this->input->post('userName'),
+                'email' => $this->input->post('userEmail'),
+                'password' => $this->input->post('userPass'),
+                'updated_at' => time(),
+                'created_at' => time()
             ];
-            $result = $this->category_model->create($data);
+            $result = $this->user_model->create($data);
             if ($result) {
                 redirect('/user/getUsers');
             } else {
@@ -41,8 +45,11 @@ class User extends CI_Controller{
     {
         if ($_POST) {
             $data = [
-                'name' => $this->input->post('categoryName')
-            ];
+                'name' => $this->input->post('userName'),
+                'email' => $this->input->post('userEmail'),
+                'updated_at' => time()
+             ];
+            
             $result = $this->user_model->update($data, $id);
             if ($result) {
                 redirect('/user/getUsers');
@@ -50,7 +57,7 @@ class User extends CI_Controller{
                 $this->createError();
             }
         }else{
-            $category = $this->user_model->get($id);
+            $user = $this->user_model->get($id);
             $data = [
                 'user' => $user,
             ];
@@ -71,9 +78,9 @@ class User extends CI_Controller{
     public function getUsers(){
 
 
-          $result ['users'] = $this->user_model->get();
+          $data ['users'] = $this->user_model->get();
 
-        $this->template->load('template1', 'category/getCategory', $result);
+        $this->template->load('main', 'user/getUser', $data);
 
     }
  

@@ -68,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-    <h1>Welcome to Information System!</h1>
+    <a href="<?php echo site_url("main/index"); ?>">Home</a>
 
     <div id="body">
         <?php echo $body ?>
