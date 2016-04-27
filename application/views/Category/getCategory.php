@@ -2,18 +2,22 @@
 
 <div id="body">
      <div>
-        <a href="<?php echo site_url ('/category/create/'); ?>">Create Category</a>
+        <a href="<?php echo site_url ('/category/create/'); ?>"><button style='background-color: #cfd7dd 'type="button">Create Category</button></a>
     </div>
     <br/>
     <div>
-         <?php
+        <table style="width:10%">
+        <?php
             foreach($categories as $category){
-                ?>
-                <a href="<?php echo site_url ('/category/update/'.$category['id']); ?>"><?php echo $category['name']?></a>
-                 <a href="<?php echo site_url ('/category/deleteCategory/'.$category['id']); ?>">Delete</a></br>
-
-                <?php
-            }
          ?>
+            <tr>
+                <td><a style='color: darkblue' href="<?php echo site_url ('/category/update/'.$category['id']); ?>"><?php echo $category['name']?></a></td>
+                <td><a style='color: #E67E22' href="<?php echo site_url ('/category/deleteCategory/'.$category['id']); ?>">Delete</a></br></td> 
+            </tr>          
+        <?php
+            }
+        ?>
+        </table>
     </div>
+
 </div>
