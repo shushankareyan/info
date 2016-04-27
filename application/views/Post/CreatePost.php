@@ -8,6 +8,11 @@
 ?>
 <form id="Post" name="Post" action="<?php echo site_url("post/create"); ?>" method="post">
 		<h2> Post </h2>
+                 <?php
+                    if ( empty($categories)){
+                        echo "You don't have categories. Please add category at first";
+                    } else {
+                ?>
 		<p> 
 			<label for="postName"  >Name </label>
 			<input class="input" name ="postName" type ="text">
@@ -15,7 +20,6 @@
 		<p> 
                     <label >Category </label>
                     <select name='categoryId'>
-                        <option value="" disabled selected hidden>Please select</option>
                         <?php
                             foreach($categories as $category){
                         ?>
@@ -27,4 +31,7 @@
 		</p>
                 
 		<input type="submit" value="Create" name="">
+                   <?php
+                            }
+                        ?>
 </form>

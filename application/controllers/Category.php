@@ -23,7 +23,7 @@ class Category extends CI_Controller{
    
     public function create()
     {
-        if (isset($_POST['categoryName'])) {
+        if (!empty($_POST['categoryName'])) {
             $data = [
                 'name' => $this->input->post('categoryName')
             ];
@@ -41,7 +41,7 @@ class Category extends CI_Controller{
 
     public function update($id)
     {
-        if ($_POST) {
+        if (!empty($_POST['categoryName'])) {
             $data = [
                 'name' => $this->input->post('categoryName')
             ];

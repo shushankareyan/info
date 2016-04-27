@@ -6,7 +6,7 @@
     </div>
     <br/>
     <div>
-        <table style="width:10%">
+        <table style="width:6%">
         <?php
             foreach($categories as $category){
          ?>

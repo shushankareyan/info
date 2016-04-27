@@ -23,7 +23,7 @@ class Post extends CI_Controller{
    
     public function create()
     {
-        if (isset($_POST['postName'])) {
+        if (!empty($_POST['postName'])) {
             $data = [
                 'name' => $this->input->post('postName'),
                 'category_id'  => $this->input->post('categoryId')    
@@ -35,14 +35,14 @@ class Post extends CI_Controller{
                 $this->createError();
             }
         } else {
-             $result ['categories'] =  $this->category_model->get();
+            $result ['categories'] =  $this->category_model->get();
             $this->template->load('main', 'post/createPost', $result);
         }
     }
 
     public function update($id)
     {
-        if ($_POST) {
+        if (!empty($_POST['postName']) && isset($_POST['categoryId'])) {
             $data = [
                 'name' => $this->input->post('postName'),
                 'category_id' => $this->input->post('categoryId')    

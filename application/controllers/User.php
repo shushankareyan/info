@@ -22,7 +22,7 @@ class User extends CI_Controller{
    
     public function create()
     {
-        if ($_POST) {
+        if (!empty($_POST['userName']) && !empty($_POST['userEmail']) && !empty($_POST['userPass'])) {
             $data = [
                 'name' => $this->input->post('userName'),
                 'email' => $this->input->post('userEmail'),
@@ -37,13 +37,13 @@ class User extends CI_Controller{
                 $this->createError();
             }
         } else {
-            $this->load->view('user/createUser');
+           $this->template->load('main', 'user/createUser');
         }
     }
 
     public function update($id)
     {
-        if ($_POST) {
+        if (!empty($_POST['userName']) && !empty($_POST['userEmail'])) {
             $data = [
                 'name' => $this->input->post('userName'),
                 'email' => $this->input->post('userEmail'),
@@ -60,8 +60,8 @@ class User extends CI_Controller{
             $user = $this->user_model->get($id);
             $data = [
                 'user' => $user,
-            ];
-            $this->load->view('user/updateUser', $data);
+            ];          
+             $this->template->load('main', 'user/updateUser', $data);
         }
 
     }
