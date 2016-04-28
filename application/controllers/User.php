@@ -78,7 +78,7 @@ class User extends CI_Controller{
     public function getUsers(){
 
 
-          $data ['users'] = $this->user_model->get();
+        $data ['users'] = $this->user_model->get();
 
         $this->template->load('main', 'user/getUser', $data);
 
