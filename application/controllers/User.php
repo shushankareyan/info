@@ -90,4 +90,10 @@ class User extends CI_Controller{
         $this->load->view('createError');
     }
 
+    public function login(){
+        if(!$this->isLogedIn){
+
+        }
+    }
+
 }
