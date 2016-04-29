@@ -15,7 +15,7 @@
 		</p>
                 <p> 
 			<label for="userEmail">Email </label>
-			<input class="input" name ="userEmail" value="<?php echo $user->email; ?>" type ="text">
+			<input class="input" name ="userEmail" value="<?php echo $user->email; ?>" type ="text" readonly>
 		</p>
                               			
 		<input type="submit" value="Update" name="">

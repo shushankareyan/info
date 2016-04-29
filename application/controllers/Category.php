@@ -74,8 +74,7 @@ class Category extends CI_Controller{
     public function getCategories(){
 
 
-          $result ['categories'] = $this->category_model->get();
-
+        $result ['categories'] = $this->category_model->get();
         $this->template->load('main', 'category/getCategory', $result);
 
     }

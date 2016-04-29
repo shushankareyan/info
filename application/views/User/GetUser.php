@@ -12,6 +12,7 @@
          ?>
             <tr>
                 <td><a style='color: darkblue' href="<?php echo site_url ('/user/update/'.$user['id']); ?>"><?php echo $user['name']?></a></td>
+                <td><a style='color: #E67E22' href="<?php echo site_url ('/user/update/'.$user['id']); ?>">Edit</a></td>
                 <td><a style='color: #E67E22'  href="<?php echo site_url ('/user/deleteUser/'.$user['id']); ?>">Delete</a></br></td> 
             </tr>          
         <?php

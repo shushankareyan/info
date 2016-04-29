@@ -73,10 +73,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div id="body">
             <a href="<?php echo site_url("category/getCategories"); ?>">Categories</a> <br/>
             <a href="<?php echo site_url("post/getPosts"); ?>">Posts</a> <br/>
-            <a href="<?php echo site_url("user/getUsers"); ?>">Users</a> 
-            
+            <a href="<?php echo site_url("user/getUsers"); ?>">Users</a> <br/> <br/>           
 	</div>
-
+        <div>
+            <a href="<?php echo site_url ('/user/logout/'); ?>"><button style='background-color: #cfd7dd 'type="button">Log Out</button></a>
+        </div>
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
 

@@ -6,8 +6,9 @@
  * and open the template in the editor.
  */
 ?>
-<form id="Cat" name="User" action="<?php echo site_url("user/create"); ?>" method="post">
-		<h2> User </h2>	
+<form id="Reg" name="Register" action="<?php echo site_url("user/register"); ?>" method="post">
+		<h2> Sign up </h2>
+		
                 <p> 
 			<label for="userEmail"  >Email </label>
 			<input class="input" name ="userEmail" type ="text">
@@ -17,5 +18,5 @@
 			<input class="input" name ="userPass" type ="password">
 		</p>
 			
-		<input type="submit" value="Create" name="">
+		<input type="submit" value="Sign up" name="">
 </form>

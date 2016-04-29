@@ -7,13 +7,14 @@
  */
 class Main extends CI_Controller{
  
-      public function index(){
-    
-        $this->load->view('welcome');
+    public function index(){
+        if($this->session->userdata('logged_in')) {
+            $this->load->view('main/welcome');          
+        } else { 
+            $this->load->view('main/login-register');
+        }
+        
     }  
-    
-    
-    
 }
 
 
