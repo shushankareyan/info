@@ -73,7 +73,7 @@ class User extends CI_Controller{
         }
     }
     
-    public function getUsers(){
+    public function getUsers() {
 
 
         $data ['users'] = $this->user_model->get();
@@ -82,8 +82,7 @@ class User extends CI_Controller{
 
     }
     
-    public function login()
-    {
+    public function login() {
         if (!empty($_POST['userEmail']) && !empty($_POST['userPass'])) {
             $data = [
                 'email' => $this->input->post('userEmail'),
@@ -98,7 +97,7 @@ class User extends CI_Controller{
                     );
                     $this->session->set_userdata('logged_in', $sess_array);              
                     redirect('/main/index');                
-            } else {
+            }else {
                 $this->template->load('main', 'main/login');
             }
         } else {

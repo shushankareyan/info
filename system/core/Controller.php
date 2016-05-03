@@ -71,7 +71,6 @@ class CI_Controller {
 	{
 		self::$instance =& $this;
 
-//		$this->checkLogin();
 		// Assign all the class objects that were instantiated by the
 		// bootstrap file (CodeIgniter.php) to local class variables
 		// so that CI can run as one big super object.
@@ -82,20 +81,16 @@ class CI_Controller {
 
 		$this->load =& load_class('Loader', 'core');
 		$this->load->initialize();
+		
+		if($this->session->userdata('logged_in')){
+			$this->user_data =  $this->session->userdata('logged_in');
+			$this->isLogedIn = true;
+		}else{
+			$this->user_data = null;
+			$this->isLogedIn = false;
+		}
 		log_message('info', 'Controller Class Initialized');
 	}
-
-
-//	private function checkLogin(){
-//            
-//		if($this->session->userdata('logged_in') !== null){
-//			$this->user_data =  $this->session->userdata('logged_in');
-//			$this->isLogedIn = true;
-//		}else{
-//			$this->user_data = null;
-//			$this->isLogedIn = false;
-//		}
-//	}
 
 	// --------------------------------------------------------------------
 
