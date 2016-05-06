@@ -29,9 +29,13 @@ class User extends CI_Controller{
                 'updated_at' => time(),
                 'created_at' => time()
             ];
-            $result = $this->user_model->create($data);
-            if ($result) {
+            $result = $this->user_model->create($data);            
+            if (isset($result)) {
+                if($result == FALSE){
+                    $this->template->load('main', 'user/createUser');  
+                }else {
                 redirect('/user/getUsers');
+                }
             } else {
                 $this->createError();
             }
@@ -112,8 +116,8 @@ class User extends CI_Controller{
                 'email' => $this->input->post('userEmail'),
                 'password' => $this->input->post('userPass')              
             ];
-            $result = $this->user_model->create($data);                       
-            if (sizeof($result)==1) {
+            $result = $this->user_model->create($data);                      
+            if (sizeof($result)==1 && $result != FALSE ) {
                     $sess_array = array(
                     'id' => $result->id,
                     'email' => $result->email,

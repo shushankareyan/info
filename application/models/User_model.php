@@ -14,11 +14,14 @@
 class User_model extends CI_Model{
    
     public function create($data){
-        
-        $this->db->insert('user', $data);
-        $id = $this->db->insert_id();
-        return  $this->db->get_where('user', array('id' => $id))->row();
-               
+        $query=$this->db->get_where('user', array('email' => $data['email']));
+        if(!empty($query->result())){
+            return FALSE;
+        } else {
+           $this->db->insert('user', $data);
+            $id = $this->db->insert_id();
+            return  $this->db->get_where('user', array('id' => $id))->row();
+        }             
     }
         
         
