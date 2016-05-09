@@ -23,6 +23,30 @@ class User_model extends CI_Model{
             return  $this->db->get_where('user', array('id' => $id))->row();
         }             
     }
+
+    public function create_temp($data){
+        $this->db->insert('temp_user', $data);
+        $id = $this->db->insert_id();
+        return  $this->db->get_where('user', array('id' => $id))->row();
+    }
+
+    public function add_user($key){
+        $query=$this->db->get_where('temp_user', array('vkey' => $key));
+        if($query->num_rows() !=1){
+            return false;
+        } else {
+            $data = [
+                'email' => $query->row()->email,
+                'password' => $query->row()->password,
+                'updated_at' => time(),
+                'created_at' => time()
+            ];
+            $this->db->insert('user', $data);
+            $id = $this->db->insert_id();
+            $this->db->delete('temp_user', array('vkey' => $key));
+            return  $this->db->get_where('user', array('id' => $id))->row();
+        }
+    }
         
         
     public function get($id = 0){
@@ -38,14 +62,12 @@ class User_model extends CI_Model{
     
 
     public function delete($id){
-          
        return $this->db->delete('user', array('id' => $id));
         
             
     }
          
     public function update($data, $id){
-        
         $this->db->where('id', $id);
         return  $this->db->update('user', $data);
           
@@ -53,6 +75,7 @@ class User_model extends CI_Model{
 
     public function login($data){
       $query = $this->db->get_where('user', $data);
-      return $query->result();         
+      return $query->result();
+
     }
 }
